@@ -1,0 +1,121 @@
+<%- include('header') %>
+
+<div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="page-breadcrumb">
+        <div class="row">
+            <div class="col-12 d-flex no-block align-items-center">
+                <h4 class="page-title">Category</h4>
+                <div class="ml-auto text-right">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Library</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Container fluid  -->
+    <!-- ============================================================== -->
+    <div class="container-fluid">
+        <!-- ============================================================== -->
+        <!-- Start Page Content -->
+        <!-- ============================================================== -->
+        <% if(message.success.length> 0){ %>
+            <div class="alert alert-success" role="alert">
+                <%= message.success %>
+            </div>
+        <% } %>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <form class="form-horizontal" method="post" action="/addcategory">
+                        <input type="hidden" name="editid" value="<%= single.id %>">
+                        <div class="card-body">
+                            <h4 class="card-title">Add Category</h4>
+                            <div class="form-group row">
+                                <label for="fname" class="col-sm-3 text-right control-label col-form-label">Category Name</label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="category" class="form-control" id="fname" value="<%= single.category %>" placeholder="Enter Category">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="border-top">
+                            <div class="card-body">
+                                <% if(single){ %>
+                                    <input type="submit" value="Edit" class="btn btn-primary"></input>
+                                <% } else{ %>
+                                    <input type="submit" class="btn btn-primary"></input>
+                                <% } %>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title m-b-0">View Category</h5>
+                    </div>
+                    <table class="table text-center">
+                        <thead>
+                            <tr style="font-size: 20px">
+                                <th scope="col">Category</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody >
+                            <% categorydata.map((val)=>{
+                                const {id,category} = val %>
+                                <tr style="font-size: 17px;">
+                                    <td><%= category %></td>
+                                    <td>
+                                        <a href="/deletecategory?id=<%= id %>">Delete</a> ||
+                                        <a href="/editcategory?id=<%= id %>">Edit</a>
+                                    </td>
+                                </tr>
+                            <% }) %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- editor -->
+        <!-- ============================================================== -->
+        <!-- End PAge Content -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Right sidebar -->
+        <!-- ============================================================== -->
+        <!-- .right-sidebar -->
+        <!-- ============================================================== -->
+        <!-- End Right sidebar -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Container fluid  -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- footer -->
+    <!-- ============================================================== -->
+    <footer class="footer text-center">
+        All Rights Reserved by Matrix-admin. Designed and Developed by <a href="https://wrappixel.com">WrapPixel</a>.
+    </footer>
+    <!-- ============================================================== -->
+    <!-- End footer -->
+    <!-- ============================================================== -->
+</div>
+
+<%- include('footer') %>

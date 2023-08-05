@@ -1,0 +1,130 @@
+<%- include('header') %>
+
+<div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="page-breadcrumb">
+        <div class="row">
+            <div class="col-12 d-flex no-block align-items-center">
+                <h4 class="page-title">Sub-Category</h4>
+                <div class="ml-auto text-right">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Library</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Container fluid  -->
+    <!-- ============================================================== -->
+    <div class="container-fluid">
+        <!-- ============================================================== -->
+        <!-- Start Page Content -->
+        <!-- ============================================================== -->
+        <% if(message.success.length> 0){ %>
+            <div class="alert alert-success" role="alert">
+                <%= message.success %>
+            </div>
+        <% } %>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <form class="form-horizontal" method="post" action="/postSubcategory">
+                        <div class="card-body">
+                            <h4 class="card-title">SubCategory</h4>
+                            <div class="form-group row">
+                                <label for="fname" class="col-sm-3 text-right control-label col-form-label">Category Name</label>
+                                <div class="col-sm-9">
+                                    <!-- <input type="text" name="category" class="form-control" id="fname" value="" placeholder="Enter Category"> -->
+                                    <select name="category" class="form-control">
+                                        <option>---Select Category---</option>
+                                        <% category.map((val)=>{ %>
+                                            <option value="<%= val.id %>"><%= val.category %></option>
+                                        <% }) %>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="fname" class="col-sm-3 text-right control-label col-form-label">Sub Category Name</label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="subcategory" class="form-control" id="fname" placeholder="Enter Sub-Category">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="border-top">
+                            <div class="card-body">
+                                <input type="submit" class="btn btn-primary"></input>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title m-b-0">View Sub Category</h5>
+                    </div>
+                    <table class="table text-center">
+                        <thead>
+                            <tr style="font-size: 20px">
+                                <th scope="col">Category</th>
+                                <th scope="col">SubCategory</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% mergesubcatTbl.map((val)=>{ %>
+                                <tr>
+                                    <td><%= val.categoryId.category %></td>
+                                    <td><%= val.subcategory %></td>
+                                    <td>
+                                        <a href="/dltsubcat?id=<%=val.id%>">Delete</a> ||
+                                        <a href="/editsubcat?id=<%=val.id%>">Edit</a>
+                                    </td>
+                                </tr>
+                            <% }) %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+        <!-- editor -->
+        <!-- ============================================================== -->
+        <!-- End PAge Content -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Right sidebar -->
+        <!-- ============================================================== -->
+        <!-- .right-sidebar -->
+        <!-- ============================================================== -->
+        <!-- End Right sidebar -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Container fluid  -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- footer -->
+    <!-- ============================================================== -->
+    <footer class="footer text-center">
+        All Rights Reserved by Matrix-admin. Designed and Developed by <a href="https://wrappixel.com">WrapPixel</a>.
+    </footer>
+    <!-- ============================================================== -->
+    <!-- End footer -->
+    <!-- ============================================================== -->
+</div>
+
+<%- include('footer') %>
